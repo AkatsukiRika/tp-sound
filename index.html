@@ -1,0 +1,334 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T.P. Sound</title>
+
+    <style>
+      body {
+        background-color: #212121;
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .divider {
+        font-size: 16px;
+        color: #fff;
+        opacity: 0.5;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      .divider:first-child {
+        margin-left: 0;
+      }
+
+      .divider:last-child {
+        margin-right: 0;
+      }
+
+      .link {
+        font-size: 16px;
+        color: #378fe4;
+      }
+
+      .title {
+        font-size: 32px;
+        margin-top: 29px;
+        color: #fff;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        margin-top: 10px;
+        color: #fff;
+        opacity: 0.5;
+        text-align: center;
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+
+      .music-player {
+        width: 340px;
+        background-color: #292259;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 32px;
+      }
+
+      #track-title {
+        color: #fff;
+        font-size: 20px;
+        margin-top: 12px;
+      }
+
+      #track-desc {
+        color: #fff;
+        font-size: 16px;
+        margin-top: 4px;
+        opacity: 0.5;
+      }
+
+      .progress {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 12px;
+      }
+
+      #progress-bar {
+        width: 210px;
+        height: 7px;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      #current-time {
+        color: #fff;
+        font-size: 16px;
+        margin-right: 4px;
+      }
+
+      #total-time {
+        color: #fff;
+        font-size: 16px;
+        margin-left: 4px;
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: row;
+        margin-top: 12px;
+        margin-bottom: 16px;
+      }
+
+      #repeat-btn {
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/drawable/icon_repeat.svg);
+        margin-right: 16px;
+      }
+
+      #prev-btn {
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/drawable/icon_previous.svg);
+        margin-right: 16px;
+      }
+
+      #play-btn {
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/drawable/icon_pause.svg);
+        margin-right: 16px;
+      }
+
+      #next-btn {
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/drawable/icon_next.svg);
+        margin-right: 16px;
+      }
+
+      #volumn-btn {
+        width: 24px;
+        height: 24px;
+        background-image: url(./assets/drawable/icon_volume.svg);
+      }
+      
+      .horizontal-divider {
+        width: calc(100% - 32px);
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin-top: 16px;
+      }
+
+      .tabs {
+        margin-top: 16px;
+        margin-bottom: 18px;
+        width: calc(min(360px, 100% - 32px));
+        height: 48px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #1d1c1f;
+        position: relative;
+      }
+
+      .tab {
+        color: #d0bcff;
+        font-size: 16px;
+        flex: 1;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .tab.active {
+        font-weight: bold;
+      }
+
+      .tab-indicator {
+        position: absolute;
+        bottom: 0;
+        height: 3px;
+        width: 59px;
+        background-color: #d0bcff;
+        transition: transform 0.3s;
+        left: 50%;
+        margin-left: -29.5px;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+      }
+
+      .track-card {
+        background-color: #010101;
+        width: calc(min(360px, 100% - 32px));
+        height: 120px;
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .track-cover {
+        width: 90px;
+        height: 90px;
+        background-image: url(./assets/drawable/img_cover.webp);
+        background-size: cover;
+        margin-left: 12px;
+      }
+
+      .track-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 12px;
+        max-width: calc(100% - 114px);
+        overflow: hidden;
+      }
+
+      .track-info .track-title {
+        color: #fff;
+        font-size: 15px;
+      }
+
+      .track-info .track-desc {
+        color: #fff;
+        font-size: 13px;
+        opacity: 0.5;
+        margin-top: 4px;
+        margin-right: 12px;
+      }
+
+      .track-link {
+        color: #fff;
+        font-size: 13px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .track-link.music {
+        font-weight: bold;
+      }
+    </style>
+
+    <script src="./js/songs.js"></script>
+
+    <script>
+      function setActiveTab(index) {
+        // 移除所有active类
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.classList.remove('active')
+        })
+        
+        // 添加active类到选中的tab
+        const selectedTab = document.querySelector(`.tab:nth-child(${index + 1})`)
+        selectedTab.classList.add('active')
+        
+        updateIndicatorPosition(index)
+      }
+
+      // 新增：更新指示器位置的函数
+      function updateIndicatorPosition(index) {
+        const selectedTab = document.querySelector('.tab.active')
+        if (!selectedTab) return
+        
+        const tabWidth = selectedTab.offsetWidth
+        const translateX = (index - 1) * tabWidth
+        document.querySelector('.tab-indicator').style.transform = `translateX(${translateX}px)`
+      }
+
+      // 新增：监听窗口尺寸变化
+      window.addEventListener('resize', () => {
+        const activeTabIndex = Array.from(document.querySelectorAll('.tab'))
+          .findIndex(tab => tab.classList.contains('active'))
+        if (activeTabIndex !== -1) {
+          updateIndicatorPosition(activeTabIndex)
+        }
+      })
+
+      window.onload = () => {
+        setActiveTab(0)
+        generateTrackCards()
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="column">
+      <div class="title">T.P. Sound</div>
+
+      <div class="subtitle">21世紀に生まれたインチキDTMer・プログラマー「水野あかり」の音源置き場です</div>
+
+      <div class="row">
+        <div class="divider">|</div>
+        <a href="" class="link">Bilibili</a>
+        <div class="divider">|</div>
+        <a href="" class="link">Netease Cloud Music</a>
+        <div class="divider">|</div>
+        <a href="" class="link">GitHub</a>
+        <div class="divider">|</div>
+      </div>
+
+      <div class="music-player">
+        <div id="track-title">Track Title</div>
+        <div id="track-desc">Track Description</div>
+
+        <div class="progress">
+          <div id="current-time">02:16</div>
+          <div id="progress-bar"></div>
+          <div id="total-time">04:33</div>
+        </div>
+
+        <div class="controls">
+          <div id="repeat-btn"></div>
+          <div id="prev-btn"></div>
+          <div id="play-btn"></div>
+          <div id="next-btn"></div>
+          <div id="volumn-btn"></div>
+        </div>
+      </div>
+
+      <div class="horizontal-divider"></div>
+
+      <div class="tabs">
+        <div class="tab active" onclick="setActiveTab(0)">All Tracks</div>
+        <div class="tab" onclick="setActiveTab(1)">Original</div>
+        <div class="tab" onclick="setActiveTab(2)">Cover</div>
+        <div class="tab-indicator"></div>
+      </div>
+    </div>
+  </body>
+</html>
