@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T.P. Sound</title>
+    <style>
+      body {
+        background-color: #212121;
+      }
+
+      .cancel-icon {
+        width: 24px;
+        height: 24px;
+        position: fixed;
+        top: 20px;
+        left: 15px;
+        cursor: pointer;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+
+      #content {
+        text-align: left;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    </style>
+
+    <script src="./js/songs.js"></script>
+
+    <script>
+      function cancel() {
+        window.history.back()
+      }
+
+      function onCreate() {
+        const title = document.querySelector('#title')
+        const song = songs.find(song => song.id === parseInt(window.location.search.split('=')[1]))
+        title.textContent = song.title
+
+        const content = document.querySelector('#content')
+        fetch(song.lyrics)
+          .then(response => response.text())
+          .then(html => {
+            content.innerHTML = html
+          })
+      }
+
+      window.onload = () => {
+        onCreate()
+      }
+    </script>
+  </head>
+
+  <body>
+    <img src="./assets/drawable/icon_cancel.svg" class="cancel-icon" onclick="cancel()" />
+    
+    <div class="container">
+      <h1 id="title"></h1>
+
+      <div id="content"></div>
+    </div>
+  </body>
+</html>
