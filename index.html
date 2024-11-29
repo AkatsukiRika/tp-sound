@@ -245,6 +245,23 @@
     </style>
 
     <script src="./js/songs.js"></script>
+    <script src="./js/MusicPlayer.js" type="module"></script>
+
+    <script type="module">
+      import { getMusicPlayerHTML } from "./js/MusicPlayer.js";
+      import { initMusicPlayerObservers } from "./js/MusicPlayer.js";
+
+      function initMusicPlayer() {
+        document.querySelector('#music-player').innerHTML = getMusicPlayerHTML()
+      }
+
+      window.onload = () => {
+        setActiveTab(0)
+        generateTrackCards()
+        initMusicPlayer()
+        initMusicPlayerObservers()
+      }
+    </script>
 
     <script>
       function setActiveTab(index) {
@@ -278,11 +295,6 @@
           updateIndicatorPosition(activeTabIndex)
         }
       })
-
-      window.onload = () => {
-        setActiveTab(0)
-        generateTrackCards()
-      }
     </script>
   </head>
 
@@ -302,24 +314,7 @@
         <div class="divider">|</div>
       </div>
 
-      <div class="music-player">
-        <div id="track-title">Track Title</div>
-        <div id="track-desc">Track Description</div>
-
-        <div class="progress">
-          <div id="current-time">02:16</div>
-          <div id="progress-bar"></div>
-          <div id="total-time">04:33</div>
-        </div>
-
-        <div class="controls">
-          <div id="repeat-btn"></div>
-          <div id="prev-btn"></div>
-          <div id="play-btn"></div>
-          <div id="next-btn"></div>
-          <div id="volumn-btn"></div>
-        </div>
-      </div>
+      <div class="music-player" id="music-player"></div>
 
       <div class="horizontal-divider"></div>
 
