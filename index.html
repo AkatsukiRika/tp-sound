@@ -58,95 +58,6 @@
         margin-left: 16px;
         margin-right: 16px;
       }
-
-      .music-player {
-        width: 340px;
-        background-color: #292259;
-        border-radius: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 32px;
-      }
-
-      #track-title {
-        color: #fff;
-        font-size: 20px;
-        margin-top: 12px;
-      }
-
-      #track-desc {
-        color: #fff;
-        font-size: 16px;
-        margin-top: 4px;
-        opacity: 0.5;
-      }
-
-      .progress {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-top: 12px;
-      }
-
-      #progress-bar {
-        width: 210px;
-        height: 7px;
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-
-      #current-time {
-        color: #fff;
-        font-size: 16px;
-        margin-right: 4px;
-      }
-
-      #total-time {
-        color: #fff;
-        font-size: 16px;
-        margin-left: 4px;
-      }
-
-      .controls {
-        display: flex;
-        flex-direction: row;
-        margin-top: 12px;
-        margin-bottom: 16px;
-      }
-
-      #repeat-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_repeat.svg);
-        margin-right: 16px;
-      }
-
-      #prev-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_previous.svg);
-        margin-right: 16px;
-      }
-
-      #play-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_pause.svg);
-        margin-right: 16px;
-      }
-
-      #next-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_next.svg);
-        margin-right: 16px;
-      }
-
-      #volumn-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_volume.svg);
-      }
       
       .horizontal-divider {
         width: calc(100% - 32px);
@@ -244,22 +155,14 @@
       }
     </style>
 
-    <script src="./js/songs.js"></script>
-    <script src="./js/MusicPlayer.js" type="module"></script>
-
     <script type="module">
-      import { getMusicPlayerHTML } from "./js/MusicPlayer.js";
-      import { initMusicPlayerObservers } from "./js/MusicPlayer.js";
-
-      function initMusicPlayer() {
-        document.querySelector('#music-player').innerHTML = getMusicPlayerHTML()
-      }
+      import { initMusicPlayer } from "./js/view/MusicPlayer.js";
+      import { initTrackCards } from "./js/view/TrackCards.js";
 
       window.onload = () => {
         setActiveTab(0)
-        generateTrackCards()
+        initTrackCards()
         initMusicPlayer()
-        initMusicPlayerObservers()
       }
     </script>
 

@@ -32,16 +32,12 @@
       }
     </style>
 
-    <script src="./js/songs.js"></script>
-
-    <script>
-      function cancel() {
-        window.history.back()
-      }
+    <script type="module">
+      import { songList } from "./js/data/SongList.js";
 
       function onCreate() {
         const title = document.querySelector('#title')
-        const song = songs.find(song => song.id === parseInt(window.location.search.split('=')[1]))
+        const song = songList.find(song => song.id === parseInt(window.location.search.split('=')[1]))
         title.textContent = song.title
 
         const content = document.querySelector('#content')
@@ -54,6 +50,12 @@
 
       window.onload = () => {
         onCreate()
+      }
+    </script>
+
+    <script>
+      function cancel() {
+        window.history.back()
       }
     </script>
   </head>
