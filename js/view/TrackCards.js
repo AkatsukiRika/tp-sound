@@ -1,10 +1,16 @@
 import { songList } from "../data/SongList.js";
 import { playSong } from "./MusicPlayer.js";
 
-export function initTrackCards() {
-  const column = document.querySelector('.column')
-  
-  songList.forEach(song => {
+export function initTrackCards(type) {
+  const column = document.querySelector('#track-cards')
+  column.innerHTML = ''
+
+  let songs = songList
+  if (type !== 0) {
+    songs = songs.filter(song => song.type === type)
+  }
+
+  songs.forEach(song => {
     const cardDiv = document.createElement('div')
     cardDiv.innerHTML = getTrackCardInnerHTML(song)
     column.appendChild(cardDiv.firstElementChild)
@@ -13,6 +19,8 @@ export function initTrackCards() {
       playSong(song.id)
     })
   })
+
+  document.head.innerHTML += getTrackCardStyle()
 }
 
 function getTrackCardInnerHTML(song) {
@@ -35,5 +43,61 @@ function getTrackCardInnerHTML(song) {
         </div>
       </div>
     </div>
+  `
+}
+
+function getTrackCardStyle() {
+  return `
+    <style id="track-card-style">
+      .track-card {
+        background-color: #010101;
+        width: 100%;
+        height: 120px;
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .track-cover {
+        width: 90px;
+        height: 90px;
+        background-image: url(./assets/drawable/img_cover.webp);
+        background-size: cover;
+        margin-left: 12px;
+      }
+
+      .track-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 12px;
+        max-width: calc(100% - 114px);
+        overflow: hidden;
+      }
+
+      .track-info .track-title {
+        color: #fff;
+        font-size: 15px;
+      }
+
+      .track-info .track-desc {
+        color: #fff;
+        font-size: 13px;
+        opacity: 0.5;
+        margin-top: 4px;
+        margin-right: 12px;
+      }
+
+      .track-link {
+        color: #fff;
+        font-size: 13px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .track-link.music {
+        font-weight: bold;
+      }
+    </style>
   `
 }

@@ -104,69 +104,19 @@
         border-top-right-radius: 24px;
       }
 
-      .track-card {
-        background-color: #010101;
-        width: calc(min(360px, 100% - 32px));
-        height: 120px;
-        margin-bottom: 18px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-
-      .track-cover {
-        width: 90px;
-        height: 90px;
-        background-image: url(./assets/drawable/img_cover.webp);
-        background-size: cover;
-        margin-left: 12px;
-      }
-
-      .track-info {
+      #track-cards {
         display: flex;
         flex-direction: column;
-        margin-left: 12px;
-        max-width: calc(100% - 114px);
-        overflow: hidden;
-      }
-
-      .track-info .track-title {
-        color: #fff;
-        font-size: 15px;
-      }
-
-      .track-info .track-desc {
-        color: #fff;
-        font-size: 13px;
-        opacity: 0.5;
-        margin-top: 4px;
-        margin-right: 12px;
-      }
-
-      .track-link {
-        color: #fff;
-        font-size: 13px;
-        text-decoration: underline;
-        cursor: pointer;
-      }
-
-      .track-link.music {
-        font-weight: bold;
+        align-items: center;
+        width: calc(min(360px, 100% - 32px));
       }
     </style>
 
     <script type="module">
       import { initMusicPlayer } from "./js/view/MusicPlayer.js";
       import { initTrackCards } from "./js/view/TrackCards.js";
+      import { TYPE_ALL, TYPE_ORIGINAL, TYPE_COVER } from "./js/data/SongList.js";
 
-      window.onload = () => {
-        setActiveTab(0)
-        initTrackCards()
-        initMusicPlayer()
-      }
-    </script>
-
-    <script>
       function setActiveTab(index) {
         // 移除所有active类
         document.querySelectorAll('.tab').forEach(tab => {
@@ -178,6 +128,8 @@
         selectedTab.classList.add('active')
         
         updateIndicatorPosition(index)
+
+        initTrackCards(index)
       }
 
       // 新增：更新指示器位置的函数
@@ -198,6 +150,23 @@
           updateIndicatorPosition(activeTabIndex)
         }
       })
+
+      window.onload = () => {
+        setActiveTab(TYPE_ALL)
+        initMusicPlayer()
+
+        document.querySelector('#tab-all-tracks').addEventListener('click', () => {
+          setActiveTab(TYPE_ALL)
+        })
+
+        document.querySelector('#tab-original').addEventListener('click', () => {
+          setActiveTab(TYPE_ORIGINAL)
+        })
+
+        document.querySelector('#tab-cover').addEventListener('click', () => {
+          setActiveTab(TYPE_COVER)
+        })
+      }
     </script>
   </head>
 
@@ -222,11 +191,13 @@
       <div class="horizontal-divider"></div>
 
       <div class="tabs">
-        <div class="tab active" onclick="setActiveTab(0)">All Tracks</div>
-        <div class="tab" onclick="setActiveTab(1)">Original</div>
-        <div class="tab" onclick="setActiveTab(2)">Cover</div>
+        <div class="tab active" id="tab-all-tracks">All Tracks</div>
+        <div class="tab" id="tab-original">Original</div>
+        <div class="tab" id="tab-cover">Cover</div>
         <div class="tab-indicator"></div>
       </div>
+
+      <div id="track-cards"></div>
     </div>
   </body>
 </html>

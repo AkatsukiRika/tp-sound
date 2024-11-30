@@ -203,14 +203,15 @@ function getMusicPlayerStyle() {
         width: 24px;
         height: 24px;
         background-image: url(./assets/drawable/icon_repeat.svg);
-        margin-right: 16px;
+        margin-right: 32px;
+        display: none;
       }
 
       #prev-btn {
         width: 24px;
         height: 24px;
         background-image: url(./assets/drawable/icon_previous.svg);
-        margin-right: 16px;
+        margin-right: 32px;
         cursor: pointer;
       }
 
@@ -218,7 +219,7 @@ function getMusicPlayerStyle() {
         width: 24px;
         height: 24px;
         background-image: url(./assets/drawable/icon_pause.svg);
-        margin-right: 16px;
+        margin-right: 32px;
         cursor: pointer;
       }
 
@@ -226,7 +227,6 @@ function getMusicPlayerStyle() {
         width: 24px;
         height: 24px;
         background-image: url(./assets/drawable/icon_next.svg);
-        margin-right: 16px;
         cursor: pointer;
       }
 
@@ -234,6 +234,7 @@ function getMusicPlayerStyle() {
         width: 24px;
         height: 24px;
         background-image: url(./assets/drawable/icon_volume.svg);
+        display: none;
       }
     </style>
   `.trim()
