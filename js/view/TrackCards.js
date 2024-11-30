@@ -18,6 +18,8 @@ export function initTrackCards(type) {
     document.querySelector(`#music-link-${song.id}`).addEventListener('click', () => {
       playSong(song.id)
     })
+
+    document.querySelector(`#track-cover-${song.id}`).style.backgroundImage = `url(${song.cover})`
   })
 
   document.head.innerHTML += getTrackCardStyle()
@@ -26,7 +28,7 @@ export function initTrackCards(type) {
 function getTrackCardInnerHTML(song) {
   return `
     <div class="track-card">
-      <div class="track-cover"></div>
+      <div class="track-cover" id="track-cover-${song.id}"></div>
       <div class="track-info">
         <div class="track-title">${song.title}</div>
         <div class="track-desc">

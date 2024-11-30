@@ -11,6 +11,7 @@ export const songList = [
     desc: '迷い星のうた',
     lyrics: './assets/raw/lyrics_content_0.html',
     track: './assets/raw/track_0.mp3',
+    cover: './assets/drawable/img_cover_0.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -19,6 +20,7 @@ export const songList = [
     desc: 'もうなにもかも 忘れて<br />今宵は シルエットダンス',
     lyrics: './assets/raw/lyrics_content_1.html',
     track: './assets/raw/track_1.mp3',
+    cover: './assets/drawable/img_cover_1.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -27,6 +29,7 @@ export const songList = [
     desc: '最初のひとしずくに 顔上げた今日の僕を',
     lyrics: './assets/raw/lyrics_content_2.html',
     track: './assets/raw/track_2.mp3',
+    cover: './assets/drawable/img_cover_2.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -35,6 +38,7 @@ export const songList = [
     desc: '“普通”とか“あたりまえ”ってなんだろう',
     lyrics: './assets/raw/lyrics_content_3.html',
     track: './assets/raw/track_3.mp3',
+    cover: './assets/drawable/img_cover_3.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -43,6 +47,7 @@ export const songList = [
     desc: 'ねぇお願い どうかこのまま 離さないでいて',
     lyrics: './assets/raw/lyrics_content_4.html',
     track: './assets/raw/track_4.mp3',
+    cover: './assets/drawable/img_cover_4.webp',
     type: TYPE_COVER
   }
 ]

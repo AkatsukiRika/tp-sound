@@ -106,11 +106,11 @@ function getMusicPlayerHTML() {
     <div id="track-desc">Track Description</div>
 
     <div class="progress">
-      <div id="current-time">02:16</div>
+      <div id="current-time">00:00</div>
       <div id="progress-bar">
         <div id="progress-fill"></div>
       </div>
-      <div id="total-time">04:33</div>
+      <div id="total-time">00:00</div>
     </div>
 
     <div class="controls">
@@ -183,13 +183,13 @@ function getMusicPlayerStyle() {
       #current-time {
         color: #fff;
         font-size: 16px;
-        margin-right: 4px;
+        margin-right: 8px;
       }
 
       #total-time {
         color: #fff;
         font-size: 16px;
-        margin-left: 4px;
+        margin-left: 8px;
       }
 
       .controls {
