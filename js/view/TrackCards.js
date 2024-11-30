@@ -8,19 +8,11 @@ export function initTrackCards() {
     const cardDiv = document.createElement('div')
     cardDiv.innerHTML = getTrackCardInnerHTML(song)
     column.appendChild(cardDiv.firstElementChild)
-    
-    document.querySelector(`#lyrics-link-${song.id}`).addEventListener('click', () => {
-      openLyricsPage(song.id)
-    })
 
     document.querySelector(`#music-link-${song.id}`).addEventListener('click', () => {
       playSong(song.id)
     })
   })
-}
-
-function openLyricsPage(id) {
-  window.location.href = `./lyrics.html?id=${id}`
 }
 
 function getTrackCardInnerHTML(song) {
@@ -38,7 +30,7 @@ function getTrackCardInnerHTML(song) {
           <div class="divider">|</div>
           <div class="track-link">Instrumental</div>
           <div class="divider">|</div>
-          <div class="track-link" id="lyrics-link-${song.id}">Lyrics</div>
+          <a class="track-link" href="./lyrics.html?id=${song.id}" target="_blank">Lyrics</a>
           <div class="divider">|</div>
         </div>
       </div>

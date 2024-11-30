@@ -2,19 +2,37 @@ import { LiveData } from "../utils/LiveData.js";
 import { formatTime } from "../utils/TimeUtil.js";
 import { songList } from "../data/SongList.js";
 
+// LiveData
 const selectedSongId = new LiveData(-1)
-
 const isPlaying = new LiveData(false)
 
+// 全局DOM
+const head = document.querySelector('head')
+const musicPlayer = document.querySelector('#music-player')
+
+// 局部DOM
+let playBtn
+let prevBtn
+let nextBtn
+let audioPlayer
+let totalTime
+let currentTime
+let progressFill
+let trackTitle
+let trackDesc
+
 export function initMusicPlayer() {
-  document.querySelector('#music-player').innerHTML = getMusicPlayerHTML()
-  document.querySelector('head').innerHTML += getMusicPlayerStyle()
-  document.querySelector('#play-btn').addEventListener('click', () => {
+  musicPlayer.innerHTML = getMusicPlayerHTML()
+  head.innerHTML += getMusicPlayerStyle()
+
+  initView()
+
+  playBtn.addEventListener('click', () => {
     if (selectedSongId.getValue() !== -1) {
       isPlaying.setValue(!isPlaying.getValue())
     }
   })
-  document.querySelector('#prev-btn').addEventListener('click', () => {
+  prevBtn.addEventListener('click', () => {
     if (selectedSongId.getValue() !== -1) {
       const prevSongId = selectedSongId.getValue() - 1
       if (prevSongId >= 0) {
@@ -23,7 +41,7 @@ export function initMusicPlayer() {
       }
     }
   })
-  document.querySelector('#next-btn').addEventListener('click', () => {
+  nextBtn.addEventListener('click', () => {
     if (selectedSongId.getValue() !== -1) {
       const nextSongId = selectedSongId.getValue() + 1
       if (nextSongId < songList.length) {
@@ -32,31 +50,35 @@ export function initMusicPlayer() {
       }
     }
   })
-  document.querySelector('#audio-player').addEventListener('canplaythrough', () => {
-    document.querySelector('#total-time').innerHTML = formatTime(document.querySelector('#audio-player').duration)
+  audioPlayer.addEventListener('canplaythrough', () => {
+    totalTime.innerHTML = formatTime(audioPlayer.duration)
   })
-  document.querySelector('#audio-player').addEventListener('timeupdate', () => {
-    document.querySelector('#current-time').innerHTML = formatTime(document.querySelector('#audio-player').currentTime)
+  audioPlayer.addEventListener('timeupdate', () => {
+    currentTime.innerHTML = formatTime(audioPlayer.currentTime)
+
+    // 添加进度条更新
+    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100
+    progressFill.style.width = `${progress}%`
   })
 
   selectedSongId.observe(value => {
     if (value === -1) {
-      document.querySelector('#track-title').innerHTML = 'Not Playing'
-      document.querySelector('#track-desc').innerHTML = 'Please select a song'
+      trackTitle.innerHTML = 'Not Playing'
+      trackDesc.innerHTML = 'Please select a song'
     } else {
-      document.querySelector('#track-title').innerHTML = songList[value].title
-      document.querySelector('#track-desc').innerHTML = songList[value].desc.replace(/<br\s*\/?>/g, ' ')
-      document.querySelector('#audio-player').src = songList[value].track
+      trackTitle.innerHTML = songList[value].title
+      trackDesc.innerHTML = songList[value].desc.replace(/<br\s*\/?>/g, ' ')
+      audioPlayer.src = songList[value].track
     }
   })
 
   isPlaying.observe(value => {
     if (value) {
-      document.querySelector('#play-btn').style.backgroundImage = 'url(./assets/drawable/icon_pause.svg)'
-      document.querySelector('#audio-player').play()
+      playBtn.style.backgroundImage = 'url(./assets/drawable/icon_pause.svg)'
+      audioPlayer.play()
     } else {
-      document.querySelector('#play-btn').style.backgroundImage = 'url(./assets/drawable/icon_play.svg)'
-      document.querySelector('#audio-player').pause()
+      playBtn.style.backgroundImage = 'url(./assets/drawable/icon_play.svg)'
+      audioPlayer.pause()
     }
   })
 }
@@ -66,6 +88,18 @@ export function playSong(id) {
   isPlaying.setValue(true)
 }
 
+function initView() {
+  playBtn = document.querySelector('#play-btn')
+  prevBtn = document.querySelector('#prev-btn')
+  nextBtn = document.querySelector('#next-btn')
+  audioPlayer = document.querySelector('#audio-player')
+  totalTime = document.querySelector('#total-time')
+  currentTime = document.querySelector('#current-time')
+  progressFill = document.querySelector('#progress-fill')
+  trackTitle = document.querySelector('#track-title')
+  trackDesc = document.querySelector('#track-desc')
+}
+
 function getMusicPlayerHTML() {
   return `
     <div id="track-title">Track Title</div>
@@ -73,7 +107,9 @@ function getMusicPlayerHTML() {
 
     <div class="progress">
       <div id="current-time">02:16</div>
-      <div id="progress-bar"></div>
+      <div id="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
       <div id="total-time">04:33</div>
     </div>
 
@@ -132,6 +168,16 @@ function getMusicPlayerStyle() {
         width: 210px;
         height: 7px;
         background-color: rgba(255, 255, 255, 0.5);
+        position: relative;
+      }
+
+      #progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background-color: #fff;
       }
 
       #current-time {
