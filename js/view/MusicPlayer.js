@@ -1,4 +1,5 @@
 import { LiveData } from "../utils/LiveData.js";
+import { formatTime } from "../utils/TimeUtil.js";
 import { songList } from "../data/SongList.js";
 
 const selectedSongId = new LiveData(-1)
@@ -31,6 +32,12 @@ export function initMusicPlayer() {
       }
     }
   })
+  document.querySelector('#audio-player').addEventListener('canplaythrough', () => {
+    document.querySelector('#total-time').innerHTML = formatTime(document.querySelector('#audio-player').duration)
+  })
+  document.querySelector('#audio-player').addEventListener('timeupdate', () => {
+    document.querySelector('#current-time').innerHTML = formatTime(document.querySelector('#audio-player').currentTime)
+  })
 
   selectedSongId.observe(value => {
     if (value === -1) {
@@ -39,14 +46,17 @@ export function initMusicPlayer() {
     } else {
       document.querySelector('#track-title').innerHTML = songList[value].title
       document.querySelector('#track-desc').innerHTML = songList[value].desc.replace(/<br\s*\/?>/g, ' ')
+      document.querySelector('#audio-player').src = songList[value].track
     }
   })
 
   isPlaying.observe(value => {
     if (value) {
       document.querySelector('#play-btn').style.backgroundImage = 'url(./assets/drawable/icon_pause.svg)'
+      document.querySelector('#audio-player').play()
     } else {
       document.querySelector('#play-btn').style.backgroundImage = 'url(./assets/drawable/icon_play.svg)'
+      document.querySelector('#audio-player').pause()
     }
   })
 }
@@ -74,6 +84,10 @@ function getMusicPlayerHTML() {
       <div id="next-btn"></div>
       <div id="volumn-btn"></div>
     </div>
+
+    <audio id="audio-player">
+      <source src="./assets/raw/track_0.ogg" type="audio/ogg">
+    </audio>
   `.trim()
 }
 
