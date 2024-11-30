@@ -1,4 +1,5 @@
 import { songList } from "../data/SongList.js";
+import { playSong } from "./MusicPlayer.js";
 
 export function initTrackCards() {
   const column = document.querySelector('.column')
@@ -10,6 +11,10 @@ export function initTrackCards() {
     
     document.querySelector(`#lyrics-link-${song.id}`).addEventListener('click', () => {
       openLyricsPage(song.id)
+    })
+
+    document.querySelector(`#music-link-${song.id}`).addEventListener('click', () => {
+      playSong(song.id)
     })
   })
 }
@@ -29,7 +34,7 @@ function getTrackCardInnerHTML(song) {
         </div>
         <div class="row">
           <div class="divider">|</div>
-          <div class="track-link music">Music</div>
+          <div class="track-link music" id="music-link-${song.id}">Music</div>
           <div class="divider">|</div>
           <div class="track-link">Instrumental</div>
           <div class="divider">|</div>

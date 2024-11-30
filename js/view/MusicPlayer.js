@@ -1,20 +1,59 @@
 import { LiveData } from "../utils/LiveData.js";
+import { songList } from "../data/SongList.js";
 
-const trackTitle = new LiveData('Not Playing')
+const selectedSongId = new LiveData(-1)
 
-const trackDesc = new LiveData('Please select a song')
+const isPlaying = new LiveData(false)
 
 export function initMusicPlayer() {
   document.querySelector('#music-player').innerHTML = getMusicPlayerHTML()
   document.querySelector('head').innerHTML += getMusicPlayerStyle()
-
-  trackTitle.observe(value => {
-    document.querySelector('#track-title').innerHTML = value
+  document.querySelector('#play-btn').addEventListener('click', () => {
+    if (selectedSongId.getValue() !== -1) {
+      isPlaying.setValue(!isPlaying.getValue())
+    }
+  })
+  document.querySelector('#prev-btn').addEventListener('click', () => {
+    if (selectedSongId.getValue() !== -1) {
+      const prevSongId = selectedSongId.getValue() - 1
+      if (prevSongId >= 0) {
+        selectedSongId.setValue(prevSongId)
+        isPlaying.setValue(true)
+      }
+    }
+  })
+  document.querySelector('#next-btn').addEventListener('click', () => {
+    if (selectedSongId.getValue() !== -1) {
+      const nextSongId = selectedSongId.getValue() + 1
+      if (nextSongId < songList.length) {
+        selectedSongId.setValue(nextSongId)
+        isPlaying.setValue(true)
+      }
+    }
   })
 
-  trackDesc.observe(value => {
-    document.querySelector('#track-desc').innerHTML = value
+  selectedSongId.observe(value => {
+    if (value === -1) {
+      document.querySelector('#track-title').innerHTML = 'Not Playing'
+      document.querySelector('#track-desc').innerHTML = 'Please select a song'
+    } else {
+      document.querySelector('#track-title').innerHTML = songList[value].title
+      document.querySelector('#track-desc').innerHTML = songList[value].desc.replace(/<br\s*\/?>/g, ' ')
+    }
   })
+
+  isPlaying.observe(value => {
+    if (value) {
+      document.querySelector('#play-btn').style.backgroundImage = 'url(./assets/drawable/icon_pause.svg)'
+    } else {
+      document.querySelector('#play-btn').style.backgroundImage = 'url(./assets/drawable/icon_play.svg)'
+    }
+  })
+}
+
+export function playSong(id) {
+  selectedSongId.setValue(id)
+  isPlaying.setValue(true)
 }
 
 function getMusicPlayerHTML() {
@@ -62,6 +101,10 @@ function getMusicPlayerStyle() {
         font-size: 16px;
         margin-top: 4px;
         opacity: 0.5;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
       }
 
       .progress {
@@ -108,6 +151,7 @@ function getMusicPlayerStyle() {
         height: 24px;
         background-image: url(./assets/drawable/icon_previous.svg);
         margin-right: 16px;
+        cursor: pointer;
       }
 
       #play-btn {
@@ -115,6 +159,7 @@ function getMusicPlayerStyle() {
         height: 24px;
         background-image: url(./assets/drawable/icon_pause.svg);
         margin-right: 16px;
+        cursor: pointer;
       }
 
       #next-btn {
@@ -122,6 +167,7 @@ function getMusicPlayerStyle() {
         height: 24px;
         background-image: url(./assets/drawable/icon_next.svg);
         margin-right: 16px;
+        cursor: pointer;
       }
 
       #volumn-btn {
