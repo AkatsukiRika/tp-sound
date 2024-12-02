@@ -1,7 +1,7 @@
 import { LiveData } from "../utils/LiveData.js";
 import { formatTime } from "../utils/TimeUtil.js";
 import { songList } from "../data/SongList.js";
-import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js";
+import { fetchBodyContentFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js";
 
 // LiveData
 const selectedSongId = new LiveData(-1)
@@ -23,7 +23,7 @@ let trackTitle
 let trackDesc
 
 export async function initMusicPlayer() {
-  musicPlayer.innerHTML = await fetchBodyFromFile('./res/layout/layout_music_player.html')
+  musicPlayer.innerHTML = await fetchBodyContentFromFile('./res/layout/layout_music_player.html')
   head.innerHTML += await fetchStyleFromFile('./res/layout/layout_music_player.html')
 
   initView()

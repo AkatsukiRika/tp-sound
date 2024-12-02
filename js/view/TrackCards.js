@@ -1,7 +1,8 @@
 import { songList } from "../data/SongList.js";
 import { playSong } from "./MusicPlayer.js";
+import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js";
 
-export function initTrackCards(type) {
+export async function initTrackCards(type) {
   const column = document.querySelector('#track-cards')
   column.innerHTML = ''
 
@@ -10,9 +11,9 @@ export function initTrackCards(type) {
     songs = songs.filter(song => song.type === type)
   }
 
-  songs.forEach(song => {
+  songs.forEach(async song => {
     const cardDiv = document.createElement('div')
-    cardDiv.innerHTML = getTrackCardInnerHTML(song)
+    cardDiv.innerHTML = await getTrackCardInnerHTML(song)
     column.appendChild(cardDiv.firstElementChild)
 
     document.querySelector(`#music-link-${song.id}`).addEventListener('click', () => {
@@ -22,84 +23,23 @@ export function initTrackCards(type) {
     document.querySelector(`#track-cover-${song.id}`).style.backgroundImage = `url(${song.cover})`
   })
 
-  document.head.innerHTML += getTrackCardStyle()
+  document.head.innerHTML += await fetchStyleFromFile('./res/layout/item_track_card.html')
 }
 
-function getTrackCardInnerHTML(song) {
-  return `
-    <div class="track-card">
-      <div class="track-cover" id="track-cover-${song.id}"></div>
-      <div class="track-info">
-        <div class="track-title">${song.title}</div>
-        <div class="track-desc">
-          ${song.desc}
-        </div>
-        <div class="row">
-          <div class="divider">|</div>
-          <div class="track-link music" id="music-link-${song.id}">Music</div>
-          <div class="divider">|</div>
-          <div class="track-link">Instrumental</div>
-          <div class="divider">|</div>
-          <a class="track-link" href="./lyrics.html?id=${song.id}" target="_blank">Lyrics</a>
-          <div class="divider">|</div>
-        </div>
-      </div>
-    </div>
-  `
-}
+async function getTrackCardInnerHTML(song) {
+  const body = await fetchBodyFromFile('./res/layout/item_track_card.html')
 
-function getTrackCardStyle() {
-  return `
-    <style id="track-card-style">
-      .track-card {
-        background-color: #010101;
-        width: 100%;
-        height: 120px;
-        margin-bottom: 18px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
+  const trackCover = body.querySelector('.track-cover')
+  const trackTitle = body.querySelector('.track-title')
+  const trackDesc = body.querySelector('.track-desc')
+  const musicLink = body.querySelector('.track-link.music')
+  const trackLink = body.querySelector('.track-link.lyrics')
 
-      .track-cover {
-        width: 90px;
-        height: 90px;
-        background-image: url(./res/drawable/img_cover.webp);
-        background-size: cover;
-        margin-left: 12px;
-      }
+  trackCover.id = `track-cover-${song.id}`
+  trackTitle.textContent = song.title
+  trackDesc.textContent = song.desc
+  musicLink.id = `music-link-${song.id}`
+  trackLink.href = `./lyrics.html?id=${song.id}`
 
-      .track-info {
-        display: flex;
-        flex-direction: column;
-        margin-left: 12px;
-        max-width: calc(100% - 114px);
-        overflow: hidden;
-      }
-
-      .track-info .track-title {
-        color: #fff;
-        font-size: 15px;
-      }
-
-      .track-info .track-desc {
-        color: #fff;
-        font-size: 13px;
-        opacity: 0.5;
-        margin-top: 4px;
-        margin-right: 12px;
-      }
-
-      .track-link {
-        color: #fff;
-        font-size: 13px;
-        text-decoration: underline;
-        cursor: pointer;
-      }
-
-      .track-link.music {
-        font-weight: bold;
-      }
-    </style>
-  `
+  return body.innerHTML
 }
