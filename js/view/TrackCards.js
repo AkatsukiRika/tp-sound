@@ -20,7 +20,7 @@ export async function initTrackCards(type) {
       playSong(song.id)
     })
 
-    document.querySelector(`#track-cover-${song.id}`).style.backgroundImage = `url(${song.cover})`
+    document.querySelector(`#track-cover-${song.id}`).src = song.cover
   })
 
   document.head.innerHTML += await fetchStyleFromFile('./res/layout/item_track_card.html')
