@@ -151,9 +151,9 @@
         }
       })
 
-      window.onload = () => {
+      window.onload = async () => {
         setActiveTab(TYPE_ALL)
-        initMusicPlayer()
+        await initMusicPlayer()
 
         document.querySelector('#tab-all-tracks').addEventListener('click', () => {
           setActiveTab(TYPE_ALL)

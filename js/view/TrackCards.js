@@ -64,7 +64,7 @@ function getTrackCardStyle() {
       .track-cover {
         width: 90px;
         height: 90px;
-        background-image: url(./assets/drawable/img_cover.webp);
+        background-image: url(./res/drawable/img_cover.webp);
         background-size: cover;
         margin-left: 12px;
       }

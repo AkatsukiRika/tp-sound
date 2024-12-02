@@ -1,6 +1,7 @@
 import { LiveData } from "../utils/LiveData.js";
 import { formatTime } from "../utils/TimeUtil.js";
 import { songList } from "../data/SongList.js";
+import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js";
 
 // LiveData
 const selectedSongId = new LiveData(-1)
@@ -21,9 +22,9 @@ let progressFill
 let trackTitle
 let trackDesc
 
-export function initMusicPlayer() {
-  musicPlayer.innerHTML = getMusicPlayerHTML()
-  head.innerHTML += getMusicPlayerStyle()
+export async function initMusicPlayer() {
+  musicPlayer.innerHTML = await fetchBodyFromFile('./res/layout/layout_music_player.html')
+  head.innerHTML += await fetchStyleFromFile('./res/layout/layout_music_player.html')
 
   initView()
 
@@ -74,10 +75,10 @@ export function initMusicPlayer() {
 
   isPlaying.observe(value => {
     if (value) {
-      playBtn.style.backgroundImage = 'url(./assets/drawable/icon_pause.svg)'
+      playBtn.style.backgroundImage = 'url(./res/drawable/icon_pause.svg)'
       audioPlayer.play()
     } else {
-      playBtn.style.backgroundImage = 'url(./assets/drawable/icon_play.svg)'
+      playBtn.style.backgroundImage = 'url(./res/drawable/icon_play.svg)'
       audioPlayer.pause()
     }
   })
@@ -98,144 +99,4 @@ function initView() {
   progressFill = document.querySelector('#progress-fill')
   trackTitle = document.querySelector('#track-title')
   trackDesc = document.querySelector('#track-desc')
-}
-
-function getMusicPlayerHTML() {
-  return `
-    <div id="track-title">Track Title</div>
-    <div id="track-desc">Track Description</div>
-
-    <div class="progress">
-      <div id="current-time">00:00</div>
-      <div id="progress-bar">
-        <div id="progress-fill"></div>
-      </div>
-      <div id="total-time">00:00</div>
-    </div>
-
-    <div class="controls">
-      <div id="repeat-btn"></div>
-      <div id="prev-btn"></div>
-      <div id="play-btn"></div>
-      <div id="next-btn"></div>
-      <div id="volumn-btn"></div>
-    </div>
-
-    <audio id="audio-player">
-      <source src="./assets/raw/track_0.ogg" type="audio/ogg">
-    </audio>
-  `.trim()
-}
-
-function getMusicPlayerStyle() {
-  return `
-    <style id="music-player-style">
-      .music-player {
-        width: 340px;
-        background-color: #292259;
-        border-radius: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 32px;
-      }
-
-      #track-title {
-        color: #fff;
-        font-size: 20px;
-        margin-top: 12px;
-      }
-
-      #track-desc {
-        color: #fff;
-        font-size: 16px;
-        margin-top: 4px;
-        opacity: 0.5;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 300px;
-      }
-
-      .progress {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-top: 12px;
-      }
-
-      #progress-bar {
-        width: 210px;
-        height: 7px;
-        background-color: rgba(255, 255, 255, 0.5);
-        position: relative;
-      }
-
-      #progress-fill {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0%;
-        background-color: #fff;
-      }
-
-      #current-time {
-        color: #fff;
-        font-size: 16px;
-        margin-right: 8px;
-      }
-
-      #total-time {
-        color: #fff;
-        font-size: 16px;
-        margin-left: 8px;
-      }
-
-      .controls {
-        display: flex;
-        flex-direction: row;
-        margin-top: 12px;
-        margin-bottom: 16px;
-      }
-
-      #repeat-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_repeat.svg);
-        margin-right: 32px;
-        display: none;
-      }
-
-      #prev-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_previous.svg);
-        margin-right: 32px;
-        cursor: pointer;
-      }
-
-      #play-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_pause.svg);
-        margin-right: 32px;
-        cursor: pointer;
-      }
-
-      #next-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_next.svg);
-        cursor: pointer;
-      }
-
-      #volumn-btn {
-        width: 24px;
-        height: 24px;
-        background-image: url(./assets/drawable/icon_volume.svg);
-        display: none;
-      }
-    </style>
-  `.trim()
 }
