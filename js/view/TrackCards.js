@@ -37,7 +37,7 @@ async function getTrackCardInnerHTML(song) {
 
   trackCover.id = `track-cover-${song.id}`
   trackTitle.textContent = song.title
-  trackDesc.textContent = song.desc
+  trackDesc.innerHTML = song.desc
   musicLink.id = `music-link-${song.id}`
   trackLink.href = `./lyrics.html?id=${song.id}`
 
