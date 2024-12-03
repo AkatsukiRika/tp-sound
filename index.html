@@ -58,7 +58,7 @@
         margin-left: 16px;
         margin-right: 16px;
       }
-      
+
       .horizontal-divider {
         width: calc(100% - 32px);
         height: 1px;
@@ -112,62 +112,7 @@
       }
     </style>
 
-    <script type="module">
-      import { initMusicPlayer } from "./js/view/MusicPlayer.js";
-      import { initTrackCards } from "./js/view/TrackCards.js";
-      import { TYPE_ALL, TYPE_ORIGINAL, TYPE_COVER } from "./js/data/SongList.js";
-
-      async function setActiveTab(index) {
-        // 移除所有active类
-        document.querySelectorAll('.tab').forEach(tab => {
-          tab.classList.remove('active')
-        })
-        
-        // 添加active类到选中的tab
-        const selectedTab = document.querySelector(`.tab:nth-child(${index + 1})`)
-        selectedTab.classList.add('active')
-        
-        updateIndicatorPosition(index)
-
-        await initTrackCards(index)
-      }
-
-      // 新增：更新指示器位置的函数
-      function updateIndicatorPosition(index) {
-        const selectedTab = document.querySelector('.tab.active')
-        if (!selectedTab) return
-        
-        const tabWidth = selectedTab.offsetWidth
-        const translateX = (index - 1) * tabWidth
-        document.querySelector('.tab-indicator').style.transform = `translateX(${translateX}px)`
-      }
-
-      // 新增：监听窗口尺寸变化
-      window.addEventListener('resize', () => {
-        const activeTabIndex = Array.from(document.querySelectorAll('.tab'))
-          .findIndex(tab => tab.classList.contains('active'))
-        if (activeTabIndex !== -1) {
-          updateIndicatorPosition(activeTabIndex)
-        }
-      })
-
-      window.onload = async () => {
-        await setActiveTab(TYPE_ALL)
-        await initMusicPlayer()
-
-        document.querySelector('#tab-all-tracks').addEventListener('click', async () => {
-          await setActiveTab(TYPE_ALL)
-        })
-
-        document.querySelector('#tab-original').addEventListener('click', async () => {
-          await setActiveTab(TYPE_ORIGINAL)
-        })
-
-        document.querySelector('#tab-cover').addEventListener('click', async () => {
-          await setActiveTab(TYPE_COVER)
-        })
-      }
-    </script>
+    <script src="./js/page/IndexPageController.js" type="module"></script>
   </head>
 
   <body>
