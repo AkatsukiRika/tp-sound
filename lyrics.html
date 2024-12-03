@@ -8,7 +8,7 @@
         background-color: #212121;
       }
 
-      .cancel-icon {
+      #img-cancel {
         width: 24px;
         height: 24px;
         position: fixed;
@@ -32,37 +32,12 @@
       }
     </style>
 
-    <script type="module">
-      import { songList } from "./js/data/SongList.js";
-
-      function onCreate() {
-        const title = document.querySelector('#title')
-        const song = songList.find(song => song.id === parseInt(window.location.search.split('=')[1]))
-        title.textContent = song.title
-
-        const content = document.querySelector('#content')
-        fetch(song.lyrics)
-          .then(response => response.text())
-          .then(html => {
-            content.innerHTML = html
-          })
-      }
-
-      window.onload = () => {
-        onCreate()
-      }
-    </script>
-
-    <script>
-      function cancel() {
-        window.close()
-      }
-    </script>
+    <script src="./js/page/LyricsPageController.js" type="module"></script>
   </head>
 
   <body>
-    <img src="./res/drawable/icon_cancel.svg" class="cancel-icon" onclick="cancel()" />
-    
+    <img src="./res/drawable/icon_cancel.svg" id="img-cancel" alt="" />
+
     <div class="container">
       <h1 id="title"></h1>
 
