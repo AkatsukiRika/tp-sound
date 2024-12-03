@@ -1,8 +1,13 @@
-import { songList } from "../data/SongList.js";
-import { playSong } from "./MusicPlayer.js";
-import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js";
+import { songList } from "../data/SongList.js"
+import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js"
+import { MusicPlayerViewController } from "./MusicPlayerViewController.js"
 
-export async function initTrackCards(type) {
+/**
+ * @param {number} type
+ * @param {MusicPlayerViewController} musicPlayer
+ * @returns {Promise<void>}
+ */
+export async function initTrackCards(type, musicPlayer) {
   const column = document.querySelector('#track-cards')
   column.innerHTML = ''
 
@@ -11,17 +16,17 @@ export async function initTrackCards(type) {
     songs = songs.filter(song => song.type === type)
   }
 
-  songs.forEach(async song => {
+  for (const song of songs) {
     const cardDiv = document.createElement('div')
     cardDiv.innerHTML = await getTrackCardInnerHTML(song)
     column.appendChild(cardDiv.firstElementChild)
 
     document.querySelector(`#music-link-${song.id}`).addEventListener('click', () => {
-      playSong(song.id)
+      musicPlayer.playSong(song.id)
     })
 
     document.querySelector(`#track-cover-${song.id}`).src = song.cover
-  })
+  }
 
   document.head.innerHTML += await fetchStyleFromFile('./res/layout/item_track_card.html')
 }

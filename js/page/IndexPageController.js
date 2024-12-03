@@ -1,5 +1,5 @@
 import { BasePageController } from "../arch/BasePageController.js";
-import { initMusicPlayer } from "../view/MusicPlayer.js";
+import { MusicPlayerViewController } from "../view/MusicPlayerViewController.js";
 import { initTrackCards } from "../view/TrackCards.js";
 import { TYPE_ALL, TYPE_ORIGINAL, TYPE_COVER } from "../data/SongList.js";
 
@@ -11,9 +11,10 @@ class IndexPageController extends BasePageController {
     this.originalTab = document.querySelector('#tab-original')
     this.coverTab = document.querySelector('#tab-cover')
     this.allTabs = document.querySelectorAll('.tab')
+    this.musicPlayer = new MusicPlayerViewController()
 
     await this._setActiveTab(TYPE_ALL)
-    await initMusicPlayer()
+    await this.musicPlayer.onInit()
 
     this.allTracksTab.addEventListener('click', async () => {
       await this._setActiveTab(TYPE_ALL)
@@ -53,7 +54,7 @@ class IndexPageController extends BasePageController {
 
     this._updateIndicatorPosition(index)
 
-    await initTrackCards(index)
+    await initTrackCards(index, this.musicPlayer)
   }
 
   _getTabWithIndex(index) {
