@@ -1,4 +1,4 @@
-import {fetchBodyContentFromFile, fetchBodyFromFile, fetchStyleFromFile} from "../utils/FetchUtil.js"
+import {fetchBodyContentFromFile, fetchStyleFromFile} from "../utils/FetchUtil.js"
 
 export class BaseViewController {
   /**
