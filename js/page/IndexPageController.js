@@ -1,7 +1,7 @@
 import { BasePageController } from "../arch/BasePageController.js";
 import { MusicPlayerViewController } from "../view/MusicPlayerViewController.js";
-import { initTrackCards } from "../view/TrackCards.js";
-import { TYPE_ALL, TYPE_ORIGINAL, TYPE_COVER } from "../data/SongList.js";
+import { TrackCardAdapter } from "../view/TrackCardAdapter.js";
+import { TYPE_ALL, TYPE_ORIGINAL, TYPE_COVER, songList } from "../data/SongList.js";
 
 class IndexPageController extends BasePageController {
   async onLoad() {
@@ -12,6 +12,11 @@ class IndexPageController extends BasePageController {
     this.coverTab = document.querySelector('#tab-cover')
     this.allTabs = document.querySelectorAll('.tab')
     this.musicPlayer = new MusicPlayerViewController()
+    this.trackCardAdapter = new TrackCardAdapter((item) => {
+      console.log('xuanTest', `onItemClick: ${item.id}`)
+      this.musicPlayer.playSong(item.id)
+    })
+    await this.trackCardAdapter.onInit()
 
     await this._setActiveTab(TYPE_ALL)
     await this.musicPlayer.onInit()
@@ -54,7 +59,7 @@ class IndexPageController extends BasePageController {
 
     this._updateIndicatorPosition(index)
 
-    await initTrackCards(index, this.musicPlayer)
+    await this.trackCardAdapter.onCreateItems(songList)
   }
 
   _getTabWithIndex(index) {

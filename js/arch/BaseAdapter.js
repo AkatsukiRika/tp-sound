@@ -1,4 +1,4 @@
-import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil"
+import { fetchBodyFromFile, fetchStyleFromFile } from "../utils/FetchUtil.js"
 
 export class BaseAdapter {
   /**
