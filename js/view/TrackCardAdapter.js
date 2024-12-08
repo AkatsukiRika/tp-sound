@@ -16,7 +16,7 @@ export class TrackCardAdapter extends BaseAdapter {
   async onCreateItems(items) {
     await super.onCreateItems(items)
     items.forEach(item => {
-      const musicLink = this.body.querySelector(`#music-link-${item.id}`)
+      const musicLink = document.querySelector(`#music-link-${item.id}`)
       musicLink.addEventListener('click', () => this.onItemClick(item))
     })
   }

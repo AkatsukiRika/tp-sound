@@ -13,7 +13,6 @@ class IndexPageController extends BasePageController {
     this.allTabs = document.querySelectorAll('.tab')
     this.musicPlayer = new MusicPlayerViewController()
     this.trackCardAdapter = new TrackCardAdapter((item) => {
-      console.log('xuanTest', `onItemClick: ${item.id}`)
       this.musicPlayer.playSong(item.id)
     })
     await this.trackCardAdapter.onInit()
@@ -59,7 +58,11 @@ class IndexPageController extends BasePageController {
 
     this._updateIndicatorPosition(index)
 
-    await this.trackCardAdapter.onCreateItems(songList)
+    if (index === TYPE_ALL) {
+      await this.trackCardAdapter.onCreateItems(songList)
+    } else {
+      await this.trackCardAdapter.onCreateItems(songList.filter(item => item.type === index))
+    }
   }
 
   _getTabWithIndex(index) {
