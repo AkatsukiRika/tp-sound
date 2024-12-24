@@ -95,11 +95,16 @@
         position: absolute;
         bottom: 0;
         height: 3px;
-        width: 59px;
-        background-color: #d0bcff;
+        width: 25%;
         transition: transform 0.3s;
-        left: 50%;
-        margin-left: -29.5px;
+        left: 0;
+      }
+
+      .tab-indicator-inner {
+        width: 70%;
+        height: 100%;
+        margin: 0 auto;
+        background-color: #d0bcff;
         border-top-left-radius: 24px;
         border-top-right-radius: 24px;
       }
@@ -136,10 +141,13 @@
       <div class="horizontal-divider"></div>
 
       <div class="tabs">
-        <div class="tab active" id="tab-all-tracks">All Tracks</div>
+        <div class="tab active" id="tab-all-tracks">All</div>
         <div class="tab" id="tab-original">Original</div>
+        <div class="tab" id="tab-remix">Remix</div>
         <div class="tab" id="tab-cover">Cover</div>
-        <div class="tab-indicator"></div>
+        <div class="tab-indicator">
+          <div class="tab-indicator-inner"></div>
+        </div>
       </div>
 
       <div id="track-cards"></div>

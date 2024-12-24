@@ -1,7 +1,7 @@
 import { BasePageController } from "../arch/BasePageController.js";
 import { MusicPlayerViewController } from "../view/MusicPlayerViewController.js";
 import { TrackCardAdapter } from "../view/TrackCardAdapter.js";
-import { TYPE_ALL, TYPE_ORIGINAL, TYPE_COVER, songList } from "../data/SongList.js";
+import { TYPE_ALL, TYPE_ORIGINAL, TYPE_REMIX, TYPE_COVER, songList } from "../data/SongList.js";
 
 class IndexPageController extends BasePageController {
   async onLoad() {
@@ -9,6 +9,7 @@ class IndexPageController extends BasePageController {
     this.tabIndicator = document.querySelector('.tab-indicator')
     this.allTracksTab = document.querySelector('#tab-all-tracks')
     this.originalTab = document.querySelector('#tab-original')
+    this.remixTab = document.querySelector('#tab-remix')
     this.coverTab = document.querySelector('#tab-cover')
     this.allTabs = document.querySelectorAll('.tab')
     this.musicPlayer = new MusicPlayerViewController()
@@ -26,6 +27,9 @@ class IndexPageController extends BasePageController {
     this.originalTab.addEventListener('click', async () => {
       await this._setActiveTab(TYPE_ORIGINAL)
     })
+    this.remixTab.addEventListener('click', async () => {
+      await this._setActiveTab(TYPE_REMIX)
+    })
     this.coverTab.addEventListener('click', async () => {
       await this._setActiveTab(TYPE_COVER)
     })
@@ -42,9 +46,8 @@ class IndexPageController extends BasePageController {
     if (!this.activeTab) {
       return
     }
-    const tabWidth = this.activeTab.offsetWidth
-    const translateX = (index - 1) * tabWidth
-    this.tabIndicator.style.transform = `translateX(${translateX}px)`
+    const translateX = index * 100
+    this.tabIndicator.style.transform = `translateX(${translateX}%)`
   }
 
   async _setActiveTab(index) {

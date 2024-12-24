@@ -2,7 +2,9 @@ export const TYPE_ALL = 0
 
 export const TYPE_ORIGINAL = 1
 
-export const TYPE_COVER = 2
+export const TYPE_REMIX = 2
+
+export const TYPE_COVER = 3
 
 export const songList = [
   {
