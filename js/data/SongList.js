@@ -27,8 +27,8 @@ export const songList = [
   },
   {
     id: 2,
-    title: '行军少年之歌',
-    desc: '两眼一睁，开始竞争！',
+    title: '行軍少年之歌',
+    desc: '兩眼一睜，開始競爭！',
     lyrics: './res/raw/lyrics_content_2.html',
     track: './res/raw/track_2.mp3',
     cover: './res/drawable/img_cover.webp',
@@ -73,7 +73,7 @@ export const songList = [
   {
     id: 7,
     title: '涙橋 (TECHNO-POP RMX)',
-    desc: '就像站在烈日骄阳大桥上<br />眼泪狂奔滴落在我的脸庞',
+    desc: '就像站在烈日驕陽大橋上<br />眼淚狂奔滴落在我的臉龐',
     lyrics: './res/raw/lyrics_content_7.html',
     track: './res/raw/track_7.mp3',
     cover: './res/drawable/img_cover.webp',
@@ -154,7 +154,7 @@ export const songList = [
   {
     id: 16,
     title: '非必要的歌',
-    desc: '自由的声音啊，墙挡不住',
+    desc: '自由的聲音啊，牆擋不住',
     lyrics: './res/raw/lyrics_content_16.html',
     track: './res/raw/track_16.mp3',
     cover: './res/drawable/img_cover.webp',
@@ -163,7 +163,7 @@ export const songList = [
   {
     id: 17,
     title: 'Programmed Life 0x7E6',
-    desc: '或许终有一天，我们的生活将只剩下一日三餐与一块屏幕。',
+    desc: '或許終有一天，我們的生活將只剩下一日三餐與一塊螢幕。',
     lyrics: './res/raw/lyrics_content_17.html',
     track: './res/raw/track_17.mp3',
     cover: './res/drawable/img_cover.webp',
