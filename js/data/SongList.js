@@ -159,23 +159,5 @@ export const songList = [
     track: './res/raw/track_16.mp3',
     cover: './res/drawable/img_cover.webp',
     type: TYPE_REMIX
-  },
-  {
-    id: 17,
-    title: 'Programmed Life 0x7E6',
-    desc: '或許終有一天，我們的生活將只剩下一日三餐與一塊螢幕。',
-    lyrics: './res/raw/lyrics_content_17.html',
-    track: './res/raw/track_17.mp3',
-    cover: './res/drawable/img_cover.webp',
-    type: TYPE_ORIGINAL
-  },
-  {
-    id: 18,
-    title: 'Rainbow Midnight',
-    desc: 'Place we live, calling "Hyper Nation".<br />We are on the run.',
-    lyrics: './res/raw/lyrics_content_18.html',
-    track: './res/raw/track_18.mp3',
-    cover: './res/drawable/img_cover.webp',
-    type: TYPE_ORIGINAL
   }
 ]
