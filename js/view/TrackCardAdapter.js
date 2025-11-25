@@ -29,12 +29,14 @@ export class TrackCardAdapter extends BaseAdapter {
     const trackTitle = newBody.querySelector('.track-title')
     const trackDesc = newBody.querySelector('.track-desc')
     const musicLink = newBody.querySelector('.track-link.music')
+    const downloadLink = newBody.querySelector('.track-link.download')
     const trackLink = newBody.querySelector('.track-link.lyrics')
   
     trackCover.src = item.cover
     trackTitle.textContent = item.title
     trackDesc.innerHTML = item.desc
     musicLink.id = `music-link-${item.id}`
+    downloadLink.href = item.track
     trackLink.href = `./lyrics.html?id=${item.id}`
 
     return newBody.innerHTML
