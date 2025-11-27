@@ -8,6 +8,15 @@ export const TYPE_COVER = 3
 
 export const songList = [
   {
+    id: 18,
+    title: 'Sadistic METAL',
+    desc: '痛みでしか愛せないなら',
+    lyrics: './res/raw/lyrics_content_18.html',
+    track: './res/raw/track_18.mp3',
+    cover: './res/drawable/img_cover_18.webp',
+    type: TYPE_ORIGINAL
+  },
+  {
     id: 17,
     title: 'CHISATO',
     desc: 'ハッピーエンド辿って',
