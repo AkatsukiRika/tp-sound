@@ -8,6 +8,15 @@ export const TYPE_COVER = 3
 
 export const songList = [
   {
+    id: 19,
+    title: 'ホシアイ -GS DANCE MIX-',
+    desc: '会いにいくよ今 星を辿って<br>夜の闇に沈む君の街まで',
+    lyrics: './res/raw/lyrics_content_19.html',
+    track: './res/raw/track_19.mp3',
+    cover: './res/drawable/img_cover_19.webp',
+    type: TYPE_REMIX
+  },
+  {
     id: 18,
     title: 'Sadistic METAL',
     desc: '痛みでしか愛せないなら',
