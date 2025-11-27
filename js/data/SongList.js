@@ -8,6 +8,15 @@ export const TYPE_COVER = 3
 
 export const songList = [
   {
+    id: 20,
+    title: 'Withdrawal',
+    desc: '優しく涙拭うキミがいて...',
+    lyrics: './res/raw/lyrics_content_20.html',
+    track: './res/raw/track_20.mp3',
+    cover: './res/drawable/img_cover_20.webp',
+    type: TYPE_ORIGINAL
+  },
+  {
     id: 19,
     title: 'ホシアイ -GS DANCE MIX-',
     desc: '会いにいくよ今 星を辿って<br>夜の闇に沈む君の街まで',
