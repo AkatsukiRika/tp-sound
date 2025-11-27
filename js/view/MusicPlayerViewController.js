@@ -26,9 +26,10 @@ export class MusicPlayerViewController extends BaseViewController {
 
     this.prevBtn.addEventListener('click', () => {
       if (this.selectedSongId.getValue() !== -1) {
-        const prevSongId = this.selectedSongId.getValue() - 1
-        if (prevSongId >= 0) {
-          this.selectedSongId.setValue(prevSongId)
+        const currentIndex = songList.findIndex(item => item.id === this.selectedSongId.getValue())
+        const prevIndex = currentIndex - 1
+        if (prevIndex >= 0) {
+          this.selectedSongId.setValue(songList[prevIndex].id)
           this.isPlaying.setValue(true)
         }
       }
@@ -36,9 +37,10 @@ export class MusicPlayerViewController extends BaseViewController {
 
     this.nextBtn.addEventListener('click', () => {
       if (this.selectedSongId.getValue() !== -1) {
-        const nextSongId = this.selectedSongId.getValue() + 1
-        if (nextSongId < songList.length) {
-          this.selectedSongId.setValue(nextSongId)
+        const currentIndex = songList.findIndex(item => item.id === this.selectedSongId.getValue())
+        const nextIndex = currentIndex + 1
+        if (nextIndex < songList.length) {
+          this.selectedSongId.setValue(songList[nextIndex].id)
           this.isPlaying.setValue(true)
         }
       }
@@ -61,9 +63,16 @@ export class MusicPlayerViewController extends BaseViewController {
         this.trackTitle.innerHTML = 'Not Playing'
         this.trackDesc.innerHTML = 'Please select a song'
       } else {
-        this.trackTitle.innerHTML = songList[value].title
-        this.trackDesc.innerHTML = songList[value].desc.replace(/<br\s*\/?>/g, ' ')
-        this.audioPlayer.src = songList[value].track
+        const song = songList.find(item => item.id === value)
+        if (!song) {
+          this.trackTitle.innerHTML = 'Not Playing'
+          this.trackDesc.innerHTML = 'Please select a song'
+          this.audioPlayer.removeAttribute('src')
+          return
+        }
+        this.trackTitle.innerHTML = song.title
+        this.trackDesc.innerHTML = song.desc.replace(/<br\s*\/?>/g, ' ')
+        this.audioPlayer.src = song.track
       }
     })
 

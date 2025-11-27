@@ -8,6 +8,15 @@ export const TYPE_COVER = 3
 
 export const songList = [
   {
+    id: 17,
+    title: 'CHISATO',
+    desc: 'ハッピーエンド辿って',
+    lyrics: './res/raw/lyrics_content_17.html',
+    track: './res/raw/track_17.mp3',
+    cover: './res/drawable/img_cover.webp',
+    type: TYPE_ORIGINAL
+  },
+  {
     id: 0,
     title: 'ズッ友 (TP Remix)',
     desc: '愛がどーとか、いらん茶々です。',
