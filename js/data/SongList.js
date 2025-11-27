@@ -76,7 +76,7 @@ export const songList = [
     desc: '就像站在烈日驕陽大橋上<br />眼淚狂奔滴落在我的臉龐',
     lyrics: './res/raw/lyrics_content_7.html',
     track: './res/raw/track_7.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_7.webp',
     type: TYPE_REMIX
   },
   {
@@ -85,7 +85,7 @@ export const songList = [
     desc: 'どうぞ、あなた<br />さよならをください',
     lyrics: './res/raw/lyrics_content_8.html',
     track: './res/raw/track_8.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_8.webp',
     type: TYPE_COVER
   },
   {
@@ -112,7 +112,7 @@ export const songList = [
     desc: 'すごく長い旅、だからこそ…',
     lyrics: './res/raw/lyrics_content_11.html',
     track: './res/raw/track_11.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_11.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -121,7 +121,7 @@ export const songList = [
     desc: '楽しい人生を過ごせば<br />それだけで偉いよね',
     lyrics: './res/raw/lyrics_content_12.html',
     track: './res/raw/track_12.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_12.webp',
     type: TYPE_COVER
   },
   {
@@ -130,7 +130,7 @@ export const songList = [
     desc: '一人の夜越えたなら<br />太陽がまた昇るかな？',
     lyrics: './res/raw/lyrics_content_13.html',
     track: './res/raw/track_13.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_13.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -139,7 +139,7 @@ export const songList = [
     desc: 'I LOVE!<br />I\'m living all the love-life days.',
     lyrics: './res/raw/lyrics_content_14.html',
     track: './res/raw/track_14.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_14.webp',
     type: TYPE_ORIGINAL
   },
   {
@@ -148,7 +148,7 @@ export const songList = [
     desc: 'アクセル止まらずに走って行こう<br />秋ゾラのハグを盗んだ',
     lyrics: './res/raw/lyrics_content_15.html',
     track: './res/raw/track_15.mp3',
-    cover: './res/drawable/img_cover.webp',
+    cover: './res/drawable/img_cover_15.webp',
     type: TYPE_ORIGINAL
   },
   {
