@@ -1,7 +1,7 @@
 import { BasePageController } from "../arch/BasePageController.js";
 import { MusicPlayerViewController } from "../view/MusicPlayerViewController.js";
 import { TrackCardAdapter } from "../view/TrackCardAdapter.js";
-import { TYPE_ALL, TYPE_ORIGINAL, TYPE_REMIX, TYPE_COVER, songList } from "../data/SongList.js";
+import { TYPE_ALL, TYPE_ORIGINAL, TYPE_REMIX, TYPE_COVER, songList, ADAPTER_TYPE_YEAR_DIVIDER } from "../data/SongList.js";
 
 class IndexPageController extends BasePageController {
   async onLoad() {
@@ -16,7 +16,6 @@ class IndexPageController extends BasePageController {
     this.trackCardAdapter = new TrackCardAdapter((item) => {
       this.musicPlayer.playSong(item.id)
     })
-    await this.trackCardAdapter.onInit()
 
     await this._setActiveTab(TYPE_ALL)
     await this.musicPlayer.onInit()
@@ -64,7 +63,7 @@ class IndexPageController extends BasePageController {
     if (index === TYPE_ALL) {
       await this.trackCardAdapter.onCreateItems(songList)
     } else {
-      await this.trackCardAdapter.onCreateItems(songList.filter(item => item.type === index))
+      await this.trackCardAdapter.onCreateItems(songList.filter(item => item.adapterType === ADAPTER_TYPE_YEAR_DIVIDER || item.type === index))
     }
   }
 

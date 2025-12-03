@@ -6,8 +6,17 @@ export const TYPE_REMIX = 2
 
 export const TYPE_COVER = 3
 
+export const ADAPTER_TYPE_YEAR_DIVIDER = 10
+
+export const ADAPTER_TYPE_TRACK_CARD = 11
+
 export const songList = [
+  { 
+    adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
+    year: 2025,
+  },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 20,
     title: 'Withdrawal',
     desc: '優しく涙拭うキミがいて...',
@@ -17,6 +26,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 19,
     title: 'ホシアイ -GS DANCE MIX-',
     desc: '会いにいくよ今 星を辿って<br>夜の闇に沈む君の街まで',
@@ -26,6 +36,7 @@ export const songList = [
     type: TYPE_REMIX
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 18,
     title: 'Sadistic METAL',
     desc: '痛みでしか愛せないなら',
@@ -35,6 +46,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 17,
     title: 'CHISATO',
     desc: 'ハッピーエンド辿って',
@@ -43,7 +55,12 @@ export const songList = [
     cover: './res/drawable/img_cover.webp',
     type: TYPE_ORIGINAL
   },
+  { 
+    adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
+    year: 2024,
+  },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 0,
     title: 'ズッ友 (TP Remix)',
     desc: '愛がどーとか、いらん茶々です。',
@@ -52,7 +69,8 @@ export const songList = [
     cover: './res/drawable/img_cover.webp',
     type: TYPE_REMIX
   },
-  {
+  { 
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 1,
     title: 'Always Last Day',
     desc: 'いつかまたあの夏の午後のように寄り添って',
@@ -62,6 +80,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 2,
     title: '行軍少年之歌',
     desc: '兩眼一睜，開始競爭！',
@@ -71,6 +90,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 3,
     title: '春日影 (IKU!!!!! Version)',
     desc: 'ねぇお願い、どうかこのまま離さないでいて。',
@@ -80,6 +100,7 @@ export const songList = [
     type: TYPE_COVER
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 4,
     title: '死別 feat.私音ロウヤ',
     desc: '僕らの最後は死別にしよう',
@@ -89,6 +110,7 @@ export const songList = [
     type: TYPE_COVER
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 5,
     title: 'あの春を返して feat.夢ノ結唱 ROSE',
     desc: 'そろそろ服着たらどうだね',
@@ -98,6 +120,7 @@ export const songList = [
     type: TYPE_COVER
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 6,
     title: 'Lilied Isolationism',
     desc: '幸せをきっと信じるのは<br />君がリリィだったから…',
@@ -107,6 +130,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 7,
     title: '涙橋 (TECHNO-POP RMX)',
     desc: '就像站在烈日驕陽大橋上<br />眼淚狂奔滴落在我的臉龐',
@@ -115,7 +139,12 @@ export const songList = [
     cover: './res/drawable/img_cover_7.webp',
     type: TYPE_REMIX
   },
+  { 
+    adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
+    year: 2023,
+  },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 8,
     title: '黄昏 ~comment te dire adieu~',
     desc: 'どうぞ、あなた<br />さよならをください',
@@ -125,6 +154,7 @@ export const songList = [
     type: TYPE_COVER
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 9,
     title: 'No.10 (Anniversary Bootleg)',
     desc: '10人目は君だよ！',
@@ -134,6 +164,7 @@ export const songList = [
     type: TYPE_REMIX
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 10,
     title: 'おどロボ (Waltz Arrange)',
     desc: 'おどロボだけど、おどれるよ！',
@@ -143,6 +174,7 @@ export const songList = [
     type: TYPE_REMIX
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 11,
     title: 'TERMINAL',
     desc: 'すごく長い旅、だからこそ…',
@@ -152,6 +184,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 12,
     title: '笑忘歌 (Japanese Version)',
     desc: '楽しい人生を過ごせば<br />それだけで偉いよね',
@@ -161,6 +194,7 @@ export const songList = [
     type: TYPE_COVER
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 13,
     title: '明日が来ない',
     desc: '一人の夜越えたなら<br />太陽がまた昇るかな？',
@@ -170,6 +204,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 14,
     title: 'Shinin\' Stage 2',
     desc: 'I LOVE!<br />I\'m living all the love-life days.',
@@ -178,7 +213,12 @@ export const songList = [
     cover: './res/drawable/img_cover_14.webp',
     type: TYPE_ORIGINAL
   },
+  { 
+    adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
+    year: 2022,
+  },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 15,
     title: '秋ゾラを嫉んでいる',
     desc: 'アクセル止まらずに走って行こう<br />秋ゾラのハグを盗んだ',
@@ -188,6 +228,7 @@ export const songList = [
     type: TYPE_ORIGINAL
   },
   {
+    adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 16,
     title: '非必要的歌',
     desc: '自由的聲音啊，牆擋不住',

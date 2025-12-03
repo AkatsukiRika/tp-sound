@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .year-divider {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        margin-top: 8px;
+        margin-bottom: 18px;
+      }
+
+      .year-divider::before,
+      .year-divider::after {
+        content: '';
+        flex-grow: 1;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .year-text {
+        padding: 0 1em;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="year-divider">
+      <div class="year-text"></div>
+    </div>
+  </body>
+</html>
