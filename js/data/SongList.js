@@ -6,12 +6,16 @@ export const TYPE_REMIX = 2
 
 export const TYPE_COVER = 3
 
+export const TYPE_SECRET = 4
+
 export const ADAPTER_TYPE_YEAR_DIVIDER = 10
 
 export const ADAPTER_TYPE_TRACK_CARD = 11
 
+export const ADAPTER_TYPE_SECRET_CARD = 12
+
 export const songList = [
-  { 
+  {
     adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
     year: 2025,
   },
@@ -55,7 +59,7 @@ export const songList = [
     cover: './res/drawable/img_cover.webp',
     type: TYPE_ORIGINAL
   },
-  { 
+  {
     adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
     year: 2024,
   },
@@ -69,7 +73,7 @@ export const songList = [
     cover: './res/drawable/img_cover.webp',
     type: TYPE_REMIX
   },
-  { 
+  {
     adapterType: ADAPTER_TYPE_TRACK_CARD,
     id: 1,
     title: 'Always Last Day',
@@ -139,7 +143,7 @@ export const songList = [
     cover: './res/drawable/img_cover_7.webp',
     type: TYPE_REMIX
   },
-  { 
+  {
     adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
     year: 2023,
   },
@@ -213,7 +217,7 @@ export const songList = [
     cover: './res/drawable/img_cover_14.webp',
     type: TYPE_ORIGINAL
   },
-  { 
+  {
     adapterType: ADAPTER_TYPE_YEAR_DIVIDER,
     year: 2022,
   },

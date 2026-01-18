@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lyrics Encryption Tools</title>
+  <style>
+    body {
+      background-color: #212121;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 80%;
+      height: 200px;
+      margin-bottom: 10px;
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 10px;
+    }
+
+    input {
+      width: 300px;
+      padding: 8px;
+      margin-bottom: 10px;
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #378fe4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #2a6fb3;
+    }
+
+    #output {
+      width: 80%;
+      height: 150px;
+      background-color: #111;
+      border: 1px solid #444;
+      padding: 10px;
+      word-break: break-all;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Lyrics Encryption Tool</h1>
+
+  <label>Content to encrypt (supports HTML):</label>
+  <textarea id="input-text" placeholder="Enter lyrics content..."></textarea>
+
+  <label>Set Password:</label>
+  <input type="text" id="password" placeholder="Enter access password">
+
+  <button id="btn-encrypt">Encrypt & Generate JSON</button>
+
+  <label>Output (JSON):</label>
+  <textarea id="output" readonly></textarea>
+
+  <script type="module">
+    import { CryptoUtil } from "../js/utils/CryptoUtil.js";
+
+    document.getElementById('btn-encrypt').addEventListener('click', async () => {
+      const text = document.getElementById('input-text').value;
+      const password = document.getElementById('password').value;
+
+      if (!text || !password) {
+        alert("Please enter both content and password");
+        return;
+      }
+
+      try {
+        const encrypted = await CryptoUtil.encrypt(text, password);
+        document.getElementById('output').value = JSON.stringify(encrypted);
+      } catch (e) {
+        console.error(e);
+        alert("Encryption failed: " + e.message);
+      }
+    });
+  </script>
+</body>
+
+</html>

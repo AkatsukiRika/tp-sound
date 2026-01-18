@@ -1,7 +1,8 @@
 import { BasePageController } from "../arch/BasePageController.js";
 import { MusicPlayerViewController } from "../view/MusicPlayerViewController.js";
 import { TrackCardAdapter } from "../view/TrackCardAdapter.js";
-import { TYPE_ALL, TYPE_ORIGINAL, TYPE_REMIX, TYPE_COVER, songList, ADAPTER_TYPE_YEAR_DIVIDER } from "../data/SongList.js";
+import { TYPE_ALL, TYPE_ORIGINAL, TYPE_REMIX, TYPE_COVER, TYPE_SECRET, songList, ADAPTER_TYPE_YEAR_DIVIDER } from "../data/SongList.js";
+import { secretList } from "../data/SecretList.js";
 
 class IndexPageController extends BasePageController {
   async onLoad() {
@@ -11,6 +12,7 @@ class IndexPageController extends BasePageController {
     this.originalTab = document.querySelector('#tab-original')
     this.remixTab = document.querySelector('#tab-remix')
     this.coverTab = document.querySelector('#tab-cover')
+    this.secretTab = document.querySelector('#tab-secret')
     this.allTabs = document.querySelectorAll('.tab')
     this.musicPlayer = new MusicPlayerViewController()
     this.trackCardAdapter = new TrackCardAdapter((item) => {
@@ -31,6 +33,9 @@ class IndexPageController extends BasePageController {
     })
     this.coverTab.addEventListener('click', async () => {
       await this._setActiveTab(TYPE_COVER)
+    })
+    this.secretTab.addEventListener('click', async () => {
+      await this._setActiveTab(TYPE_SECRET)
     })
   }
 
@@ -62,6 +67,8 @@ class IndexPageController extends BasePageController {
 
     if (index === TYPE_ALL) {
       await this.trackCardAdapter.onCreateItems(songList)
+    } else if (index === TYPE_SECRET) {
+      await this.trackCardAdapter.onCreateItems(secretList)
     } else {
       await this.trackCardAdapter.onCreateItems(songList.filter(item => item.adapterType === ADAPTER_TYPE_YEAR_DIVIDER || item.type === index))
     }

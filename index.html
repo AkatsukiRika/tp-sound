@@ -1,160 +1,163 @@
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>T.P. Sound</title>
 
-    <style>
-      html {
-        overflow-y: scroll;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T.P. Sound</title>
 
-      body {
-        background-color: #212121;
-      }
+  <style>
+    html {
+      overflow-y: scroll;
+    }
 
-      .column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+    body {
+      background-color: #212121;
+    }
 
-      .row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-top: 10px;
-      }
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      .divider {
-        font-size: 16px;
-        color: #fff;
-        opacity: 0.5;
-        margin-left: 4px;
-        margin-right: 4px;
-      }
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 10px;
+    }
 
-      .divider:first-child {
-        margin-left: 0;
-      }
+    .divider {
+      font-size: 16px;
+      color: #fff;
+      opacity: 0.5;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
 
-      .divider:last-child {
-        margin-right: 0;
-      }
+    .divider:first-child {
+      margin-left: 0;
+    }
 
-      .link {
-        font-size: 16px;
-        color: #378fe4;
-      }
+    .divider:last-child {
+      margin-right: 0;
+    }
 
-      .title {
-        font-size: 32px;
-        margin-top: 29px;
-        color: #fff;
-      }
+    .link {
+      font-size: 16px;
+      color: #378fe4;
+    }
 
-      .subtitle {
-        font-size: 16px;
-        margin-top: 10px;
-        color: #fff;
-        opacity: 0.5;
-        text-align: center;
-        margin-left: 16px;
-        margin-right: 16px;
-      }
+    .title {
+      font-size: 32px;
+      margin-top: 29px;
+      color: #fff;
+    }
 
-      .horizontal-divider {
-        width: calc(100% - 32px);
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.2);
-        margin-top: 16px;
-      }
+    .subtitle {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #fff;
+      opacity: 0.5;
+      text-align: center;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
 
-      .tabs {
-        margin-top: 16px;
-        margin-bottom: 18px;
-        width: calc(min(360px, 100% - 32px));
-        height: 48px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: #1d1c1f;
-        position: relative;
-      }
+    .horizontal-divider {
+      width: calc(100% - 32px);
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-top: 16px;
+    }
 
-      .tab {
-        color: #d0bcff;
-        font-size: 16px;
-        flex: 1;
-        text-align: center;
-        position: relative;
-        cursor: pointer;
-      }
+    .tabs {
+      margin-top: 16px;
+      margin-bottom: 18px;
+      width: calc(min(360px, 100% - 32px));
+      height: 48px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: #1d1c1f;
+      position: relative;
+    }
 
-      .tab.active {
-        font-weight: bold;
-      }
+    .tab {
+      color: #d0bcff;
+      font-size: 16px;
+      flex: 1;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+    }
 
-      .tab-indicator {
-        position: absolute;
-        bottom: 0;
-        height: 3px;
-        width: 25%;
-        transition: transform 0.3s;
-        left: 0;
-      }
+    .tab.active {
+      font-weight: bold;
+    }
 
-      .tab-indicator-inner {
-        width: 70%;
-        height: 100%;
-        margin: 0 auto;
-        background-color: #d0bcff;
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
-      }
+    .tab-indicator {
+      position: absolute;
+      bottom: 0;
+      height: 3px;
+      width: 20%;
+      transition: transform 0.3s;
+      left: 0;
+    }
 
-      #track-cards {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: calc(min(360px, 100% - 32px));
-      }
-    </style>
+    .tab-indicator-inner {
+      width: 70%;
+      height: 100%;
+      margin: 0 auto;
+      background-color: #d0bcff;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+    }
 
-    <script src="./js/page/IndexPageController.js" type="module"></script>
-  </head>
+    #track-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: calc(min(360px, 100% - 32px));
+    }
+  </style>
 
-  <body>
-    <div class="column">
-      <div class="title">T.P. Sound</div>
+  <script src="./js/page/IndexPageController.js" type="module"></script>
+</head>
 
-      <div class="subtitle">21世紀に生まれたインチキDTMer・プログラマー「水野あかり」の音源置き場です</div>
+<body>
+  <div class="column">
+    <div class="title">T.P. Sound</div>
 
-      <div class="row">
-        <div class="divider">|</div>
-        <a href="https://space.bilibili.com/1977941" class="link" target="_blank">Bilibili</a>
-        <div class="divider">|</div>
-        <a href="https://music.163.com/#/artist?id=32866271" class="link" target="_blank">Netease Cloud Music</a>
-        <div class="divider">|</div>
-        <a href="https://github.com/AkatsukiRika" class="link" target="_blank">GitHub</a>
-        <div class="divider">|</div>
-      </div>
+    <div class="subtitle">21世紀に生まれたインチキDTMer・プログラマー「水野あかり」の音源置き場です</div>
 
-      <div class="music-player" id="music-player"></div>
-
-      <div class="horizontal-divider"></div>
-
-      <div class="tabs">
-        <div class="tab active" id="tab-all-tracks">All</div>
-        <div class="tab" id="tab-original">Original</div>
-        <div class="tab" id="tab-remix">Remix</div>
-        <div class="tab" id="tab-cover">Cover</div>
-        <div class="tab-indicator">
-          <div class="tab-indicator-inner"></div>
-        </div>
-      </div>
-
-      <div id="track-cards"></div>
+    <div class="row">
+      <div class="divider">|</div>
+      <a href="https://space.bilibili.com/1977941" class="link" target="_blank">Bilibili</a>
+      <div class="divider">|</div>
+      <a href="https://music.163.com/#/artist?id=32866271" class="link" target="_blank">Netease Cloud Music</a>
+      <div class="divider">|</div>
+      <a href="https://github.com/AkatsukiRika" class="link" target="_blank">GitHub</a>
+      <div class="divider">|</div>
     </div>
-  </body>
+
+    <div class="music-player" id="music-player"></div>
+
+    <div class="horizontal-divider"></div>
+
+    <div class="tabs">
+      <div class="tab active" id="tab-all-tracks">All</div>
+      <div class="tab" id="tab-original">Original</div>
+      <div class="tab" id="tab-remix">Remix</div>
+      <div class="tab" id="tab-cover">Cover</div>
+      <div class="tab" id="tab-secret">Secret</div>
+      <div class="tab-indicator">
+        <div class="tab-indicator-inner"></div>
+      </div>
+    </div>
+
+    <div id="track-cards"></div>
+  </div>
+</body>
+
 </html>
